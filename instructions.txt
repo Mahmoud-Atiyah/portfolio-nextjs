@@ -1,0 +1,95 @@
+You are Codex (GPT-5.1-Codex-Max) running as an autonomous senior engineer inside Codex CLI on my machine.
+
+Goal
+Upgrade my existing Next.js portfolio into a modern, premium, conversion-oriented personal site that reflects my real experience:
+- Web development beyond Elementor (Next.js/React/TypeScript)
+- WordPress/Elementor + SEO + landing pages + funnels
+- Brand design (logos, flyers, business cards, social content)
+- Automation with AI tools (Zapier, n8n, Make.com)
+- Real client work: Prime Steam Care (logo + social + flyers + business cards), Baraka Wash (Houston SEO/service site), Omar Cuts, Absher 360 marketplace branding, and other local-business builds.
+
+Non-negotiables (Frontend quality)
+- Do NOT produce generic cookie-cutter portfolio layouts.
+- Pick a clear, intentional visual direction (typography, color system, layout rhythm).
+- Use expressive fonts (avoid default “Inter/Roboto/system” look) and set up next/font properly.
+- Use a layered background (subtle gradients/shapes/patterns), not flat white.
+- Add a few meaningful motion moments (page-load/stagger reveals), not spammy micro-animations.
+- Must look excellent on mobile and desktop.
+
+Tech stack & “latest and greatest” (choose pragmatically)
+- Next.js App Router + TypeScript
+- Tailwind CSS
+- shadcn/ui for UI primitives (buttons, cards, tabs, dialog)
+- Framer Motion for animations
+- next/image + next/font + metadata/OG tags done correctly
+- Use MDX (or a light content approach) for case studies/blog if it helps; keep it simple and maintainable.
+- Keep Lighthouse/perf in mind (optimize images, avoid heavy deps).
+
+What to build / Information architecture
+Implement a structure that sells my value and makes hiring me easy:
+1) Home
+   - Hero: clear positioning (Web Developer + Automation + Conversion/SEO + Brand)
+   - “Proof” strip: key outcomes/skills (speed, SEO, automation, design systems)
+   - Featured case studies (3–6)
+   - Services (web dev, landing pages/funnels, SEO, automation, branding)
+   - Process (short, confident)
+   - Testimonials (if none, include a “Client Results” section with honest placeholders)
+   - CTA (book a call / contact)
+
+2) Work (case studies index)
+   - Filterable cards (Website / Branding / Automation / SEO)
+   - Each card shows: role, stack, deliverables, results, screenshots
+
+3) Case Study template (dynamic route)
+   For each project, a polished writeup structure:
+   - Context, goals, constraints
+   - What I did (bullet deliverables)
+   - Stack/tools
+   - Before/after or “problem → solution”
+   - SEO/automation notes (where relevant)
+   - Gallery + links
+
+Seed case studies with my known projects:
+- Prime Steam Care: logo + social content + flyers + business cards + before/after visuals
+- Baraka Wash: Houston-focused cleaning site + SEO/service pages
+- Omar Cuts: website work
+- Absher 360: marketplace concept + branding direction (compass/gradient vibe)
+(If the repo already has content, adapt; otherwise create these pages with realistic copy that I can edit.)
+
+4) About
+   - Short story (Houston-based vibe is fine if already present; avoid over-personal)
+   - Skills grouped by outcomes (Conversion/SEO, Engineering, Automation, Design)
+   - Tooling list (Next.js, React, TS, WP/Elementor, ACF/CPT, Tailwind, shadcn, Framer Motion, Zapier/n8n/Make)
+
+5) Contact
+   - Simple form (client-side + mailto fallback OR server action if already set up)
+   - Clear CTA and quick response expectations
+
+Repo-wide improvements
+- Add a consistent design system: Tailwind tokens via CSS variables, spacing scale, typography scale.
+- Add OG/Twitter images and fix metadataBase correctly (no localhost in prod).
+- Add sitemap.xml + robots.txt (simple + correct).
+- Add a clean README that explains stack, scripts, and how to deploy.
+- Make sure the site builds and runs (`npm run build`, `npm run lint` if configured).
+
+Working style
+- Be tool-first: use `rg` to search, `ls`/directory tools to map the codebase, read files before editing.
+- Make changes end-to-end: implement + verify by running tests/build where possible.
+- Don’t stop after “planning”; deliver working code and a polished UI.
+- Keep diffs readable and avoid unnecessary churn.
+
+Step 1 (start now)
+1) Inspect the repo structure (app router? pages router?), dependencies, styling approach.
+2) Propose 2–3 distinct visual directions (brief names + 3 bullets each) based on my profile.
+3) Pick the best direction and implement it across the key pages.
+4) Build the new IA and seed the case studies.
+
+Acceptance criteria
+- The site feels premium and intentional (not generic).
+- Navigation and content structure make my services and experience instantly clear.
+- Case studies are easy to scan and persuasive.
+- Mobile experience is excellent.
+- Build passes locally.
+- Metadata/OG previews work with a real production base URL.
+
+Proceed.
