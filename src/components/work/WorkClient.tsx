@@ -58,8 +58,7 @@ export function WorkClient() {
                 <motion.div
                   variants={staggerContainer}
                   initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.2 }}
+                  animate="show"
                   className="grid gap-5 sm:gap-6 lg:grid-cols-2"
                 >
                   {items.map((study) => (
