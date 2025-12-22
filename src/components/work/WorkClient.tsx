@@ -20,7 +20,7 @@ const filters = [
 
 export function WorkClient() {
   return (
-    <main className="mx-auto w-[min(1200px,92vw)] pb-24 pt-12 md:pt-16">
+    <main className="mx-auto w-[min(1200px,92vw)] pb-24 pt-10 sm:pt-12 md:pt-16">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -29,10 +29,10 @@ export function WorkClient() {
       >
         <motion.div variants={fadeUp()}>
           <Badge variant="accent">Work</Badge>
-          <h1 className="mt-4 text-3xl font-display uppercase tracking-[0.12em] md:text-5xl">
+          <h1 className="mt-4 text-2xl font-display uppercase tracking-[0.12em] sm:text-3xl md:text-5xl">
             Work + Projects
           </h1>
-          <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
+          <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
             Filter by focus area to see how each project blends experience, conversion, and
             technical execution.
           </p>
@@ -60,7 +60,7 @@ export function WorkClient() {
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0.2 }}
-                  className="grid gap-6 lg:grid-cols-2"
+                  className="grid gap-5 sm:gap-6 lg:grid-cols-2"
                 >
                   {items.map((study) => (
                     <motion.article key={study.slug} variants={fadeUp()}>
@@ -71,7 +71,7 @@ export function WorkClient() {
                             alt={study.hero.alt}
                             width={1200}
                             height={800}
-                            className="h-56 w-full object-cover"
+                            className="h-44 w-full object-cover sm:h-56"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
                           <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
@@ -82,17 +82,17 @@ export function WorkClient() {
                             ))}
                           </div>
                         </div>
-                        <div className="space-y-4 p-6">
+                        <div className="space-y-4 p-4 sm:p-6">
                           <div>
-                            <h2 className="text-2xl font-semibold text-foreground">
+                            <h2 className="text-xl font-semibold text-foreground sm:text-2xl">
                               {study.title}
                             </h2>
-                            <p className="mt-2 text-sm text-muted-foreground">
+                            <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
                               {study.summary}
                             </p>
                           </div>
 
-                          <div className="grid gap-3 text-sm text-muted-foreground">
+                          <div className="grid gap-3 text-xs text-muted-foreground sm:text-sm">
                             <div>
                               <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                                 Role
@@ -139,7 +139,7 @@ export function WorkClient() {
                             </div>
                           </div>
 
-                          <Button asChild variant="outline" className="w-fit">
+                          <Button asChild variant="outline" className="w-full sm:w-fit">
                             <Link href={`/work/${study.slug}`}>View Project</Link>
                           </Button>
                         </div>

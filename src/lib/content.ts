@@ -205,6 +205,10 @@ export const projects: Project[] = [
     ],
     links: [
       {
+        label: "Visit Site",
+        href: "https://bureen-glass-aluminum.vercel.app/",
+      },
+      {
         label: "GitHub Repo",
         href: "https://github.com/Mahmoud-Atiyah/bureen-glass-aluminum",
       },
