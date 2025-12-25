@@ -1,11 +1,11 @@
 ﻿import type { MetadataRoute } from "next";
-import { projects } from "@/lib/content";
+import { designShowcase, projects } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
   const lastModified = new Date();
-  const staticRoutes = ["", "/work", "/about", "/experiments", "/contact"];
+  const staticRoutes = ["", "/work", "/design", "/about", "/experiments", "/contact"];
 
   return [
     ...staticRoutes.map((route) => ({
@@ -14,6 +14,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...projects.map((study) => ({
       url: `${baseUrl}/work/${study.slug}`,
+      lastModified,
+    })),
+    ...designShowcase.map((item) => ({
+      url: `${baseUrl}/design/${item.slug}`,
       lastModified,
     })),
   ];

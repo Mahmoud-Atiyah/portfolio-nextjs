@@ -56,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${displayFont.variable} ${sansFont.variable}`}>
-      <body className="bg-background text-foreground antialiased">
+      <body className="bg-background text-foreground antialiased" suppressHydrationWarning>
         <div className="relative min-h-screen overflow-hidden">
           <div className="pointer-events-none absolute inset-0 bg-grid opacity-35" />
           <div className="pointer-events-none absolute -top-24 right-[-10%] h-[460px] w-[460px] rounded-full bg-[radial-gradient(circle,hsla(74,100%,60%,0.22),transparent_65%)] blur-3xl" />

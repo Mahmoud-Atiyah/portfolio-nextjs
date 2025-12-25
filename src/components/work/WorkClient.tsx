@@ -20,7 +20,7 @@ const filters = [
 
 export function WorkClient() {
   return (
-    <main className="mx-auto w-[min(1200px,92vw)] pb-24 pt-10 sm:pt-12 md:pt-16">
+    <main className="mx-auto w-full max-w-[1200px] px-4 pb-24 pt-10 sm:px-6 sm:pt-12 md:pt-16 2xl:max-w-[1320px]">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -139,7 +139,13 @@ export function WorkClient() {
                           </div>
 
                           <Button asChild variant="outline" className="w-full sm:w-fit">
-                            <Link href={`/work/${study.slug}`}>View Project</Link>
+                            <Link
+                              href={`/work/${encodeURIComponent(
+                                study.slug.trim().toLowerCase()
+                              )}`}
+                            >
+                              View Project
+                            </Link>
                           </Button>
                         </div>
                       </Card>

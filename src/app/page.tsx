@@ -23,7 +23,7 @@ export default function HomePage() {
   return (
     <main className="space-y-24 pb-24">
       <motion.section
-        className="mx-auto grid w-[min(1200px,92vw)] gap-12 pt-16 md:grid-cols-[1.05fr,0.95fr] md:pt-24"
+        className="mx-auto grid w-full max-w-[1200px] gap-12 px-4 pt-16 sm:px-6 md:grid-cols-[1.05fr,0.95fr] md:pt-24 2xl:max-w-[1320px]"
         variants={staggerContainer}
         initial="hidden"
         animate="show"
@@ -108,7 +108,7 @@ export default function HomePage() {
       </motion.section>
 
       <motion.section
-        className="mx-auto w-[min(1200px,92vw)] space-y-10"
+        className="mx-auto w-full max-w-[1200px] space-y-10 px-4 sm:px-6 2xl:max-w-[1320px]"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
@@ -159,7 +159,13 @@ export default function HomePage() {
                     ))}
                   </div>
                   <Button asChild variant="outline" className="w-fit">
-                    <Link href={`/work/${project.slug}`}>View Project</Link>
+                    <Link
+                      href={`/work/${encodeURIComponent(
+                        project.slug.trim().toLowerCase()
+                      )}`}
+                    >
+                      View Project
+                    </Link>
                   </Button>
                 </div>
               </Card>
@@ -169,7 +175,7 @@ export default function HomePage() {
       </motion.section>
 
       <motion.section
-        className="mx-auto w-[min(1200px,92vw)]"
+        className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 2xl:max-w-[1320px]"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
@@ -194,7 +200,7 @@ export default function HomePage() {
       </motion.section>
 
       <motion.section
-        className="mx-auto w-[min(1200px,92vw)]"
+        className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 2xl:max-w-[1320px]"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
@@ -219,7 +225,7 @@ export default function HomePage() {
       </motion.section>
 
       <motion.section
-        className="mx-auto w-[min(1200px,92vw)]"
+        className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 2xl:max-w-[1320px]"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
@@ -250,7 +256,7 @@ export default function HomePage() {
       </motion.section>
 
       <motion.section
-        className="mx-auto w-[min(1200px,92vw)]"
+        className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 2xl:max-w-[1320px]"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
@@ -279,7 +285,7 @@ export default function HomePage() {
       </motion.section>
 
       <motion.section
-        className="mx-auto w-[min(1100px,92vw)]"
+        className="mx-auto w-full max-w-[1100px] px-4 sm:px-6 2xl:max-w-[1200px]"
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"

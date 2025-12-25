@@ -10,6 +10,7 @@ import { siteConfig } from "@/lib/site";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Work", href: "/work" },
+  { label: "Design", href: "/design" },
   { label: "Experiments", href: "/experiments" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -24,7 +25,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur">
-      <div className="mx-auto flex w-[min(1200px,92vw)] items-center justify-between py-4">
+      <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-4 py-4 sm:px-6 2xl:max-w-[1320px]">
         <Link
           href="/"
           className="flex items-center gap-3 text-lg font-semibold text-foreground"

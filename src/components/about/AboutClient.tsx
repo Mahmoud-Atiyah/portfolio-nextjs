@@ -10,7 +10,7 @@ import { siteConfig } from "@/lib/site";
 
 export function AboutClient() {
   return (
-    <main className="mx-auto w-[min(1100px,92vw)] space-y-12 pb-24 pt-12 md:pt-16">
+    <main className="mx-auto w-full max-w-[1100px] space-y-12 px-4 pb-24 pt-12 sm:px-6 md:pt-16 2xl:max-w-[1200px]">
       <motion.section
         className="grid gap-10 lg:grid-cols-[0.9fr,1.1fr]"
         variants={staggerContainer}

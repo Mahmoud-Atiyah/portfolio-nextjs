@@ -35,6 +35,23 @@ export type Experiment = {
   links: { label: string; href: string }[];
 };
 
+export type DesignShowcase = {
+  slug: string;
+  title: string;
+  client: string;
+  summary: string;
+  categories: string[];
+  deliverables: string[];
+  hero: {
+    image: string;
+    alt: string;
+  };
+  gallery?: { image: string; alt: string }[];
+  videos?: { label: string; src: string; poster?: string }[];
+  caseStudySlug?: string;
+  featured?: boolean;
+};
+
 export const proofPoints = [
   {
     title: "Speed to launch",
@@ -271,6 +288,10 @@ export const projects: Project[] = [
       },
     ],
     links: [
+      {
+        label: "Visit Site",
+        href: "https://calderon-law-firm-website.vercel.app/",
+      },
       {
         label: "GitHub Repo",
         href: "https://github.com/Mahmoud-Atiyah/calderon-law-firm-website",
@@ -868,6 +889,103 @@ export const projects: Project[] = [
         href: "https://github.com/Mahmoud-Atiyah/react-portfolio",
       },
     ],
+  },
+];
+
+export const designShowcase: DesignShowcase[] = [
+  {
+    slug: "baraka-wash-brand-system",
+    title: "Baraka Wash Brand System",
+    client: "Baraka Wash",
+    summary: "Bold identity and collateral built for instant recognition and mobile trust.",
+    categories: ["Brand Systems", "Print & Collateral", "Social Content"],
+    deliverables: ["Logo suite", "Business cards", "Vehicle decals", "Social templates"],
+    hero: {
+      image: "/images/BarakaWash.png",
+      alt: "Baraka Wash brand preview",
+    },
+    caseStudySlug: "baraka-wash",
+    featured: true,
+  },
+  {
+    slug: "absher-360-launch-kit",
+    title: "Absher 360 Launch Kit",
+    client: "Absher 360",
+    summary: "Launch visuals for a service marketplace with trust-first brand cues.",
+    categories: ["Brand Systems", "Social Content"],
+    deliverables: ["Logo refinements", "Social launch assets", "Profile badges", "Promo banners"],
+    hero: {
+      image: "/images/Absher360.png",
+      alt: "Absher 360 marketplace preview",
+    },
+    caseStudySlug: "absher-360",
+    featured: true,
+  },
+  {
+    slug: "prime-steam-care-collateral",
+    title: "Prime Steam Care Collateral",
+    client: "Prime Steam Care",
+    summary: "Clean, service-forward collateral for local marketing and repeat bookings.",
+    categories: ["Logo & Identity", "Print & Collateral", "Social Content"],
+    deliverables: ["Logo polish", "Flyer set", "Review cards", "Social content"],
+    hero: {
+      image: "/images/prime-steam-care.png",
+      alt: "Prime Steam Care brand preview",
+    },
+    caseStudySlug: "prime-steam-care",
+    featured: true,
+  },
+  {
+    slug: "omar-cuts-identity",
+    title: "Omar Cuts Identity",
+    client: "Omar Cuts",
+    summary: "Youthful barbershop identity with promos built for fast mobile booking.",
+    categories: ["Logo & Identity", "Social Content", "Print & Collateral"],
+    deliverables: ["Logo mark", "Appointment card", "Instagram templates", "Price list"],
+    hero: {
+      image: "/images/omar-cuts.jpeg",
+      alt: "Omar Cuts brand preview",
+    },
+    caseStudySlug: "omar-cuts",
+  },
+  {
+    slug: "sereniskin-med-spa-visuals",
+    title: "SereniSkin Med Spa Visuals",
+    client: "SereniSkin Med Spa",
+    summary: "Premium visual direction to reinforce trust and elevate service positioning.",
+    categories: ["Brand Systems", "Print & Collateral", "Social Content"],
+    deliverables: ["Logo update", "Service menu layout", "Social posts", "Booking card"],
+    hero: {
+      image: "/images/MedSpa.png",
+      alt: "SereniSkin Med Spa visual preview",
+    },
+    caseStudySlug: "sereniskin-med-spa",
+  },
+  {
+    slug: "bureen-glass-identity",
+    title: "Bureen Glass Services Identity",
+    client: "Bureen Glass Services",
+    summary: "Clear, confident identity with print-ready service collateral.",
+    categories: ["Logo & Identity", "Print & Collateral"],
+    deliverables: ["Logo system", "Service flyer", "Quote sheet", "Vehicle decal"],
+    hero: {
+      image: "/images/bureen.png",
+      alt: "Bureen Glass Services brand preview",
+    },
+    caseStudySlug: "bureen-glass-services",
+  },
+  {
+    slug: "fixarji-service-brand",
+    title: "Fixarji Service Brand Assets",
+    client: "Fixarji",
+    summary: "Utility-focused identity pieces built for rapid local recognition.",
+    categories: ["Logo & Identity", "Social Content", "Print & Collateral"],
+    deliverables: ["Logo refresh", "Service flyer", "WhatsApp promos", "Business card"],
+    hero: {
+      image: "/images/fixarji.png",
+      alt: "Fixarji brand preview",
+    },
+    caseStudySlug: "fixarji",
   },
 ];
 

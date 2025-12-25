@@ -8,12 +8,24 @@ import { Card } from "@/components/ui/card";
 import { projects } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 
+const normalizeSlug = (slug: string) => decodeURIComponent(slug).trim().toLowerCase();
+
+const findProjectBySlug = (slug: string) => {
+  const normalized = normalizeSlug(slug);
+  return projects.find((item) => normalizeSlug(item.slug) === normalized);
+};
+
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return projects.map((project) => ({ slug: normalizeSlug(project.slug) }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const project = projects.find((item) => item.slug === params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = findProjectBySlug(slug);
   if (!project) {
     return {};
   }
@@ -36,17 +48,22 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = projects.find((item) => item.slug === params.slug);
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = findProjectBySlug(slug);
 
   if (!project) {
     notFound();
   }
 
   return (
-    <main className="mx-auto w-[min(1100px,92vw)] space-y-12 pb-24 pt-12 md:pt-16">
-      <section className="grid gap-8 lg:grid-cols-[1.15fr,0.85fr]">
-        <div className="relative overflow-hidden rounded-[32px] border border-border/80 bg-surface/70 p-4">
+    <main className="mx-auto w-full max-w-[1100px] space-y-10 px-4 pb-20 pt-10 sm:px-6 md:space-y-12 md:pb-24 md:pt-16 2xl:max-w-[1200px]">
+      <section className="grid items-start gap-6 lg:grid-cols-[1.1fr,0.9fr] lg:gap-8">
+        <div className="relative overflow-hidden rounded-[32px] border border-border/80 bg-surface/70 p-3 sm:p-4">
           <Image
             src={project.hero.image}
             alt={project.hero.alt}
@@ -85,7 +102,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      <section className="grid gap-6 md:grid-cols-3">
+      <section className="grid gap-4 sm:gap-6 md:grid-cols-3">
         <Card className="p-6">
           <h2 className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Role</h2>
           <p className="mt-3 text-sm text-foreground/90">{project.role}</p>
@@ -106,7 +123,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </Card>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1fr,1fr]">
+      <section className="grid gap-4 sm:gap-6 lg:grid-cols-[1fr,1fr]">
         <Card className="p-6">
           <h2 className="text-lg font-semibold text-foreground">Context</h2>
           <p className="mt-3 text-sm text-muted-foreground">{project.context}</p>
@@ -124,7 +141,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </Card>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1fr,1fr]">
+      <section className="grid gap-4 sm:gap-6 lg:grid-cols-[1fr,1fr]">
         <Card className="p-6">
           <h2 className="text-lg font-semibold text-foreground">Constraints</h2>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
@@ -149,7 +166,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </Card>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1fr,1fr]">
+      <section className="grid gap-4 sm:gap-6 lg:grid-cols-[1fr,1fr]">
         <Card className="p-6">
           <h2 className="text-lg font-semibold text-foreground">Solution Highlights</h2>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
@@ -193,9 +210,9 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           <Badge variant="accent">Gallery</Badge>
           <h2 className="mt-4 text-2xl font-display uppercase tracking-[0.12em]">Project Visuals</h2>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {project.gallery.map((image) => (
-            <Card key={image.image} className="overflow-hidden p-3">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
+          {project.gallery.map((image, index) => (
+            <Card key={`${image.image}-${index}`} className="overflow-hidden p-3">
               <Image
                 src={image.image}
                 alt={image.alt}

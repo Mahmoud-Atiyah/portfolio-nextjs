@@ -11,7 +11,7 @@ import { fadeUp, staggerContainer } from "@/lib/motion";
 
 export function ExperimentsClient() {
   return (
-    <main className="mx-auto w-[min(1100px,92vw)] space-y-10 pb-24 pt-12 md:pt-16">
+    <main className="mx-auto w-full max-w-[1100px] space-y-10 px-4 pb-24 pt-12 sm:px-6 md:pt-16 2xl:max-w-[1200px]">
       <motion.section variants={staggerContainer} initial="hidden" animate="show">
         <motion.div variants={fadeUp()} className="space-y-4">
           <Badge variant="accent">Experiments</Badge>
