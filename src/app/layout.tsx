@@ -57,13 +57,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${displayFont.variable} ${sansFont.variable}`}>
       <body className="bg-background text-foreground antialiased" suppressHydrationWarning>
+        <Header />
         <div className="relative min-h-screen overflow-hidden">
           <div className="pointer-events-none absolute inset-0 bg-grid opacity-35" />
           <div className="pointer-events-none absolute -top-24 right-[-10%] h-[460px] w-[460px] rounded-full bg-[radial-gradient(circle,hsla(74,100%,60%,0.22),transparent_65%)] blur-3xl" />
           <div className="pointer-events-none absolute top-[35%] left-[-12%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,hsla(138,100%,55%,0.2),transparent_65%)] blur-3xl" />
           <div className="pointer-events-none absolute bottom-[-18%] right-[8%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,hsla(190,100%,55%,0.18),transparent_65%)] blur-3xl" />
           <div className="relative z-10 flex min-h-screen flex-col">
-            <Header />
             <div className="flex-1">{children}</div>
             <Footer />
           </div>

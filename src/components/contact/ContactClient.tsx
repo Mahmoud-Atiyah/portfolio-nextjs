@@ -9,8 +9,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { siteConfig } from "@/lib/site";
+import { useSearchParams } from "next/navigation";
 
 export function ContactClient() {
+  const searchParams = useSearchParams();
+  const isSuccess = searchParams.get("success") === "1";
   return (
     <main className="mx-auto w-full max-w-[1100px] space-y-12 px-4 pb-24 pt-12 sm:px-6 md:pt-16 2xl:max-w-[1200px]">
       <motion.section variants={staggerContainer} initial="hidden" animate="show">
@@ -34,70 +37,92 @@ export function ContactClient() {
         className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]"
       >
         <motion.div variants={fadeUp()}>
-          <Card className="p-6 md:p-8">
-            <form
-              action={`mailto:${siteConfig.email}`}
-              method="post"
-              encType="text/plain"
-              className="space-y-4"
-            >
-              <div className="grid gap-4 md:grid-cols-2">
-                <div>
-                  <label
-                    htmlFor="contact-name"
-                    className="text-xs uppercase tracking-[0.2em] text-muted-foreground"
+          <Card id="contact-form" className="p-6 md:p-8">
+            {isSuccess ? (
+              <div className="rounded-2xl border border-border/70 bg-surface/60 p-6 text-sm text-muted-foreground">
+                Thanks! Your message has been sent. I'll reply within 24 hours.
+                <div className="mt-4">
+                  <Link
+                    href="/contact#contact-form"
+                    className="text-xs font-semibold uppercase tracking-[0.2em] text-accent"
                   >
-                    Name
-                  </label>
-                  <Input id="contact-name" name="name" placeholder="Your name" required />
+                    Back to form
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                action="/contact?success=1"
+                className="space-y-4"
+              >
+                <input type="hidden" name="form-name" value="contact" />
+
+                <div className="sr-only">
+                  <label htmlFor="contact-bot">Don't fill this out</label>
+                  <input id="contact-bot" name="bot-field" type="text" />
+                </div>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="contact-name"
+                      className="text-xs uppercase tracking-[0.2em] text-muted-foreground"
+                    >
+                      Name
+                    </label>
+                    <Input id="contact-name" name="name" placeholder="Your Name" required />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="contact-email"
+                      className="text-xs uppercase tracking-[0.2em] text-muted-foreground"
+                    >
+                      Email
+                    </label>
+                    <Input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      placeholder="you@email.com"
+                      required
+                    />
+                  </div>
                 </div>
                 <div>
                   <label
-                    htmlFor="contact-email"
+                    htmlFor="contact-project"
                     className="text-xs uppercase tracking-[0.2em] text-muted-foreground"
                   >
-                    Email
+                    Project type
                   </label>
                   <Input
-                    id="contact-email"
-                    name="email"
-                    type="email"
-                    placeholder="you@email.com"
+                    id="contact-project"
+                    name="project"
+                    placeholder="Website, funnel, branding, automation"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="contact-details"
+                    className="text-xs uppercase tracking-[0.2em] text-muted-foreground"
+                  >
+                    Project details
+                  </label>
+                  <Textarea
+                    id="contact-details"
+                    name="details"
+                    placeholder="What are you trying to launch or improve?"
                     required
                   />
                 </div>
-              </div>
-              <div>
-                <label
-                  htmlFor="contact-project"
-                  className="text-xs uppercase tracking-[0.2em] text-muted-foreground"
-                >
-                  Project type
-                </label>
-                <Input
-                  id="contact-project"
-                  name="project"
-                  placeholder="Website, funnel, branding, automation"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="contact-details"
-                  className="text-xs uppercase tracking-[0.2em] text-muted-foreground"
-                >
-                  Project details
-                </label>
-                <Textarea
-                  id="contact-details"
-                  name="details"
-                  placeholder="What are you trying to launch or improve?"
-                  required
-                />
-              </div>
-              <Button type="submit" size="lg">
-                Send Project Details
-              </Button>
-            </form>
+                <Button type="submit" size="lg">
+                  Send Project Details
+                </Button>
+              </form>
+            )}
             <p className="mt-4 text-xs text-muted-foreground">
               Prefer email? Reach me directly at {siteConfig.email}.
             </p>
