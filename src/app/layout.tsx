@@ -4,6 +4,8 @@ import "./globals.css";
 import { siteConfig } from "@/lib/site";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const displayFont = Bebas_Neue({
   variable: "--font-display",
@@ -68,6 +70,8 @@ export default function RootLayout({
             <Footer />
           </div>
         </div>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
