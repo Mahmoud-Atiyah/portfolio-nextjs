@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,11 +10,53 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { siteConfig } from "@/lib/site";
-import { useSearchParams } from "next/navigation";
 
 export function ContactClient() {
-  const searchParams = useSearchParams();
-  const isSuccess = searchParams.get("success") === "1";
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus("sending");
+    setErrorMessage(null);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const botField = String(formData.get("bot-field") ?? "").trim();
+
+    if (botField) {
+      setStatus("success");
+      form.reset();
+      return;
+    }
+
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      project: String(formData.get("project") ?? "").trim(),
+      details: String(formData.get("details") ?? "").trim(),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      setStatus("success");
+      form.reset();
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong.");
+    }
+  };
+
   return (
     <main className="mx-auto w-full max-w-[1100px] space-y-12 px-4 pb-24 pt-12 sm:px-6 md:pt-16 2xl:max-w-[1200px]">
       <motion.section variants={staggerContainer} initial="hidden" animate="show">
@@ -38,29 +81,25 @@ export function ContactClient() {
       >
         <motion.div variants={fadeUp()}>
           <Card id="contact-form" className="p-6 md:p-8">
-            {isSuccess ? (
+            {status === "success" ? (
               <div className="rounded-2xl border border-border/70 bg-surface/60 p-6 text-sm text-muted-foreground">
                 Thanks! Your message has been sent. I'll reply within 24 hours.
                 <div className="mt-4">
-                  <Link
-                    href="/contact#contact-form"
+                  <button
+                    type="button"
                     className="text-xs font-semibold uppercase tracking-[0.2em] text-accent"
+                    onClick={() => setStatus("idle")}
                   >
                     Back to form
-                  </Link>
+                  </button>
                 </div>
               </div>
             ) : (
               <form
-                name="contact"
                 method="POST"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-                action="/contact?success=1"
                 className="space-y-4"
+                onSubmit={handleSubmit}
               >
-                <input type="hidden" name="form-name" value="contact" />
-
                 <div className="sr-only">
                   <label htmlFor="contact-bot">Don't fill this out</label>
                   <input id="contact-bot" name="bot-field" type="text" />
@@ -118,8 +157,13 @@ export function ContactClient() {
                     required
                   />
                 </div>
-                <Button type="submit" size="lg">
-                  Send Project Details
+                {status === "error" && (
+                  <p className="text-xs text-red-400" role="alert">
+                    {errorMessage}
+                  </p>
+                )}
+                <Button type="submit" size="lg" disabled={status === "sending"}>
+                  {status === "sending" ? "Sending..." : "Send Project Details"}
                 </Button>
               </form>
             )}

@@ -25,6 +25,7 @@
 *.pem
 instructions.txt
 instructions2.txt
+*.txt
 
 # debug
 npm-debug.log*
