@@ -26,6 +26,7 @@
 instructions.txt
 instructions2.txt
 *.txt
+react-email-starter/
 
 # debug
 npm-debug.log*
